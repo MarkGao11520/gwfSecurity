@@ -1,7 +1,6 @@
 package com.gwf.web;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -12,12 +11,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * Created by gaowenfeng on 2017/9/10.
@@ -36,6 +39,16 @@ public class UserControllerTest {
     @Before
     public void setup(){
         mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+
+    @Test
+    public void whenUploadSuccess() throws Exception {
+        String result = mockMvc.perform(fileUpload("/file")
+                        .file(new MockMultipartFile("file","test.txt","multipart/form-data","hello upload".getBytes("utf-8"))))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        log.info(result);
     }
 
     @Test
@@ -73,12 +86,45 @@ public class UserControllerTest {
 
     @Test
     public void whenCreateSuccess() throws Exception{
-        String content = "{\"username\":\"tom\",\"password\":\"123\"}";
+        Date date = new Date();
+        log.info(date.getTime()+"");
+        String content = "{\"username\":\"tom\",\"password\":null,\"birthday\":\""+date.getTime()+"\"}";
+        String result =
         mockMvc.perform(post("/user")
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(content))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id")
-                        .value(1));
+                        .value(1))
+                .andReturn().getResponse().getContentAsString();
+        log.info(result);
+    }
+
+    @Test
+    public void whenUpdateSuccess() throws Exception{
+        Date date = new Date(LocalDateTime
+                .now()  //当前时间
+                .plusYears(1)  //未来的一年
+                .atZone(ZoneId.systemDefault())  //时区
+                .toInstant()
+                .toEpochMilli());
+        log.info(date.getTime()+"");
+        String content = "{\"id\":\"1\",\"username\":\"tom\",\"password\":null,\"birthday\":\""+date.getTime()+"\"}";
+        String result =
+                mockMvc.perform(put("/user/1")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(content))
+                        .andExpect(status().isOk())
+                        .andExpect(jsonPath("$.id")
+                                .value(1))
+                        .andReturn().getResponse().getContentAsString();
+        log.info(result);
+    }
+
+    @Test
+    public void whenDeleteSuccess() throws Exception{
+        mockMvc.perform(delete("/user/1")
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
     }
 }

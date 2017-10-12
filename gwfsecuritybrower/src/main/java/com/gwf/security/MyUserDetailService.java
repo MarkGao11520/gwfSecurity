@@ -18,7 +18,15 @@ public class MyUserDetailService implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("登录用户名："+username);
         //根据用户查找用户信息
-        return new User(username,"123456",
+        //根据查找的用户的信息判读用户是否被冻结
+        User user = new User(
+                username,
+                "123456",
+                true,
+                true,
+                true,
+                false,
                 AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        return user;
     }
 }

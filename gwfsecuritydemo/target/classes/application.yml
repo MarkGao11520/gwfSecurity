@@ -10,7 +10,13 @@ spring:
 security:
   basic:
   # 打开/关闭spring security 打开默认的用户名为user，密码是程序启动时输出的
-    enabled: true
+    enabled: false
 
 server:
   port: 9090
+
+gwf:
+  security:
+    browser:
+      loginPage: /demo-signIn.html
+      loginType: REDIRECT

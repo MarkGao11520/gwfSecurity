@@ -86,8 +86,8 @@ public class UserController {
         users.add(new User());
         users.add(new User());
         users.add(new User());
-//        throw new IOException("读取文件异常");
-        return users;
+        throw new IOException("读取文件异常");
+//        return users;
     }
 
     /**

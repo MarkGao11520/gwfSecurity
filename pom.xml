@@ -53,5 +53,6 @@
         <module>gwfsecuritybrower</module>
         <module>gwfsecuritycore</module>
         <module>gwfsecuritydemo</module>
+        <module>spring-boot-api-project-seed</module>
     </modules>
 </project>

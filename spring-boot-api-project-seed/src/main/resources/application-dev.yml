@@ -39,7 +39,7 @@ gwf:
   security:
     browser:
       loginPage: /static/demo-signIn.html
-      loginType: REDIRECT
+      loginType: JSON
 
 
 

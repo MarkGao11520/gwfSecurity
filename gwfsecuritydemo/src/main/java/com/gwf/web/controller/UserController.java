@@ -9,6 +9,11 @@ import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +30,17 @@ import java.util.List;
 @RequestMapping("/user")
 @Slf4j
 public class UserController {
+
+    @GetMapping("/me")
+    public Object getCurrentUser(Authentication authentication){
+        return authentication;
+       // return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    @GetMapping("/me/detail")
+    public Object getCurrentUser(@AuthenticationPrincipal UserDetails userDetails){
+        return userDetails;
+    }
 
 
     /**

@@ -12,6 +12,4 @@ import lombok.ToString;
 @ToString
 public class SimpleResponse {
     private Object content;
-
-
 }

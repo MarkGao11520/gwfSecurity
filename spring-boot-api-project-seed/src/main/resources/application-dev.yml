@@ -33,12 +33,12 @@ spring:
 
 security:
   basic:
-    enabled: false
+    enabled: true
 
 gwf:
   security:
     browser:
-      loginPage: /demo-signIn.html
+      loginPage: /static/demo-signIn.html
       loginType: REDIRECT
 
 

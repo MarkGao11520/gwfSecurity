@@ -17,6 +17,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 public class BrowerSecurityConfig extends WebSecurityConfigurerAdapter{
 
+    public BrowerSecurityConfig() {
+        System.out.println("--------------------------------------------------------");
+    }
+
     @Autowired
     private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
 

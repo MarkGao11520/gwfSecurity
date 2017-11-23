@@ -10,4 +10,6 @@ public class BrowserProperties {
     private String loginPage = "/static/my-signIn.html";
 
     private LoginType loginType = LoginType.JSON;
+
+    private int rememberMeSeconds = 3600; //默认一小时
 }

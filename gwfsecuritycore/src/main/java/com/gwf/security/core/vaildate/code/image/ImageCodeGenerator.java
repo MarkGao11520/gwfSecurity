@@ -3,7 +3,6 @@ package com.gwf.security.core.vaildate.code.image;
 import com.gwf.security.core.vaildate.code.ValidateCodeGenerator;
 import com.gwf.security.core.properties.SecurityProperties;
 import lombok.Data;
-import org.springframework.stereotype.*;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 

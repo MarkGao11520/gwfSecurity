@@ -31,4 +31,9 @@ gwf:
 #        length: 6
 #        url: /user,/user/*
 #        expireIn: 160
+  social:
+    qq:
+      app-id:
+      app-securt:
+
 

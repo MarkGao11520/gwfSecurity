@@ -2,7 +2,6 @@ package com.gwf.security.core.vaildate.code;
 
 import lombok.Data;
 
-import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;
 
 /**

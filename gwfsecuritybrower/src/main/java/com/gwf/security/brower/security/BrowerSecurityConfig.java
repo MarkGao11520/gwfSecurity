@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
 
@@ -49,6 +50,12 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     /**
+     * qq登录配置
+     */
+    @Autowired
+    private SpringSocialConfigurer gwfSocialConfigurer;
+
+    /**
      * 数据库连接池
      */
     @Autowired
@@ -82,6 +89,8 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
                 .apply(validateCodeSecurityConfig)
                     .and()
                 .apply(smsCodeAuthenticationSecurityConfig)
+                    .and()
+                .apply(gwfSocialConfigurer)
                     .and()
                 .rememberMe()
                     .tokenRepository(persisentTokenRepository())

@@ -22,6 +22,18 @@ gwf:
       loginType: JSON
 #    code:
 #      image:
+#        width: 100  宽高可从浏览器获取
+#        heigth: 100
 #        length: 6
-#        width: 100
 #        url: /user,/user/*
+#        expireIn: 160
+#      sms:
+#        length: 6
+#        url: /user,/user/*
+#        expireIn: 160
+  social:
+    qq:
+      app-id:
+      app-securt:
+
+

@@ -2,12 +2,13 @@ package com.gwf.security.code;
 
 import com.gwf.security.core.vaildate.code.ValidateCodeGenerator;
 import com.gwf.security.core.vaildate.code.image.ImageCode;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.ServletWebRequest;
 
 /**
  * Created by gaowenfeng on 2017/11/23.
  */
-//@Component("imageCodeGenerator")
+// @Component("imageValidateCodeGenerator")
 public class DemoImageCodeGenerator implements ValidateCodeGenerator {
     @Override
     public ImageCode generate(ServletWebRequest request) {

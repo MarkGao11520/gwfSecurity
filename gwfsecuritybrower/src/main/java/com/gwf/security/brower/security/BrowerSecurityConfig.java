@@ -4,24 +4,17 @@ import com.gwf.security.core.authentication.AbstractChannelSecurityConfig;
 import com.gwf.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.gwf.security.core.properties.SecurityConstants;
 import com.gwf.security.core.properties.SecurityProperties;
-import com.gwf.security.core.vaildate.code.SmsCodeFilter;
-import com.gwf.security.core.vaildate.code.ValidateCodeFilter;
 import com.gwf.security.core.vaildate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
-import javax.servlet.ServletException;
 import javax.sql.DataSource;
 
 /**
@@ -31,27 +24,40 @@ import javax.sql.DataSource;
 public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
 
 
-    @Autowired
-    private AuthenticationSuccessHandler myAuthenticationSuccessHandler;
-
-    @Autowired
-    private AuthenticationFailureHandler myAuthenticationFailHandler;
-
+    /**
+     * 自定义配置参数类
+     */
     @Autowired
     private SecurityProperties securityProperties;
 
+    /**
+     * 自定义从数据库获取用户信息类
+     */
     @Autowired
     private UserDetailsService userDetailsService;
 
+    /**
+     * 验证码拦截器配置
+     */
     @Autowired
     private ValidateCodeSecurityConfig validateCodeSecurityConfig;
 
+    /**
+     * 手机号验证码配置
+     */
     @Autowired
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
+    /**
+     * 数据库连接池
+     */
     @Autowired
     private DataSource dataSource;
 
+    /**
+     * 密码加密
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -87,8 +93,7 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
                             SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                             SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
                             securityProperties.getBrowser().getLoginPage(),
-                            SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX,
-                            "/code/*")
+                            SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX)
                     .permitAll()
                     .anyRequest()          //所有请求
                     .authenticated()       //都需要认证

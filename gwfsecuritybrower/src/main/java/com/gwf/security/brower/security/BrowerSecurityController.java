@@ -1,6 +1,7 @@
 package com.gwf.security.brower.security;
 
 import com.gwf.security.brower.support.SimpleResponse;
+import com.gwf.security.core.properties.SecurityConstants;
 import com.gwf.security.core.properties.SecurityProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class BrowerSecurityController {
 
 
 
-    @RequestMapping("authentication/require")
+    @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
     public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request,response);

@@ -1,8 +1,8 @@
 package com.gwf.service.impl;
 
-import com.gwf.dao.BBlogMapper;
-import com.gwf.model.BBlog;
-import com.gwf.service.BBlogService;
+import com.gwf.dao.BLabelMapper;
+import com.gwf.model.BLabel;
+import com.gwf.service.BLabelService;
 import com.gwf.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class BBlogServiceImpl extends AbstractService<BBlog> implements BBlogService {
+public class BLabelServiceImpl extends AbstractService<BLabel> implements BLabelService {
     @Resource
-    private BBlogMapper bBlogMapper;
+    private BLabelMapper bLabelMapper;
 
 }

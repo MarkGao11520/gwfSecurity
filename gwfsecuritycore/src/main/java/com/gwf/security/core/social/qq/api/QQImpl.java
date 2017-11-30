@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * Created by gaowenfeng on 2017/11/25.
+ * 多实例，不能声明成Spring的bean
  */
 @Slf4j
 public class QQImpl extends AbstractOAuth2ApiBinding implements QQ  {
@@ -33,7 +34,7 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ  {
 
         log.info(result);
 
-        this.openId = StringUtils.substringBetween(result,"\"openid\":","}");
+        this.openId = StringUtils.substringBetween(result,"\"openid\":\"","\"}");
     }
 
 
@@ -44,8 +45,12 @@ public class QQImpl extends AbstractOAuth2ApiBinding implements QQ  {
         String result = getRestTemplate().getForObject(url,String.class);
 
         log.info(result);
+
+        QQUserInfo userInfo = null;
         try {
-            return objectMapper.readValue(result,QQUserInfo.class);
+            userInfo = objectMapper.readValue(result,QQUserInfo.class);
+            userInfo.setOpenId(openId);
+            return userInfo;
         } catch (IOException e) {
             throw new RuntimeException("获取用户信息失败");
         }

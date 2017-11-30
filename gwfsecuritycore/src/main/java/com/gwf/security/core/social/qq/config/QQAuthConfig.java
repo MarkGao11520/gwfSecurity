@@ -13,7 +13,7 @@ import org.springframework.social.connect.ConnectionFactory;
  * Created by gaowenfeng on 2017/11/25.
  */
 @Configuration
-@ConditionalOnProperty(prefix = "gwf.security.social.qq",name = "app-id")
+@ConditionalOnProperty(prefix = "gwf.security.social.qq", name = "app-id")
 public class QQAuthConfig extends SocialAutoConfigurerAdapter{
 
     @Autowired

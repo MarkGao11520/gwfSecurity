@@ -27,18 +27,21 @@ gwf:
         app-secret: c6e5d368dc5e71061f568a04488b5726
         providerId: qq
       filterProcessesUrl : /auth
-
-#    code:
-#      image:
-#        width: 100  宽高可从浏览器获取
-#        heigth: 100
-#        length: 6
-#        url: /user,/user/*
-#        expireIn: 160
-#      sms:
-#        length: 6
-#        url: /user,/user/*
-#        expireIn: 160
+      weixin:
+        app-id: wx8a1436ae9f981a56
+        app-secret: 97253af8b6c2b10778db893778991619
+        providerId: weixin
+    code:
+      image:
+        width: 100  # 宽高可从浏览器获取
+        heigth: 100
+        length: 6
+        url: /user,/user/*
+        expireIn: 160
+      sms:
+        length: 6
+        url: /user,/user/*
+        expireIn: 160
 
 
 

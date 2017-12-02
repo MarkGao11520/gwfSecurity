@@ -7,6 +7,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
+import tk.mybatis.mapper.entity.Condition;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -76,6 +77,7 @@ public class BBlogController {
         @ApiResponse(code = 500,message = "服务器内部错误"),
         @ApiResponse(code = 400,message = "业务逻辑错误的具体原因")})
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
+        Condition condition = new Condition(BBlog.class);
         PageHelper.startPage(page, size);
         List<BBlog> list = bBlogService.findAll();
         PageInfo pageInfo = new PageInfo(list);

@@ -32,7 +32,7 @@ public interface SecurityConstants {
 	 * 
 	 * @see BrowserSecurityController
 	 */
-	public static final String DEFAULT_LOGIN_PAGE_URL = "/static/my-signIn.html";
+	public static final String DEFAULT_LOGIN_PAGE_URL = "/my-signIn.html";
 	/**
 	 * 验证图片验证码时，http请求中默认的携带图片验证码信息的参数的名称
 	 */

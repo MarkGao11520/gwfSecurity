@@ -55,6 +55,8 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
     @Autowired
     private SpringSocialConfigurer gwfSocialConfigurer;
 
+
+
     /**
      * 数据库连接池
      */
@@ -101,8 +103,8 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
                     .antMatchers(
                             SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
                             SecurityConstants.DEFAULT_LOGIN_PROCESSING_URL_MOBILE,
-                            securityProperties.getBrowser().getLoginPage(),
                             SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX,
+                            securityProperties.getBrowser().getLoginPage(),
                             securityProperties.getBrowser().getSignUpUrl(),
                             "/user/regist")
                     .permitAll()

@@ -35,8 +35,8 @@ gwf:
         providerId: qq
       filterProcessesUrl : /auth
       weixin:
-        app-id:
-        app-secret:
+        app-id: wx8a1436ae9f981a56
+        app-secret: 97253af8b6c2b10778db893778991619
         providerId: weixin
     code:
       image:

@@ -44,8 +44,8 @@ gwf:
       signUpUrl: /demo-signUp.html
     social:
       qq:
-        app-id: 101447248
-        app-secret: c6e5d368dc5e71061f568a04488b5726
+        app-id:
+        app-secret:
         providerId: qq
       filterProcessesUrl : /auth
 logging:

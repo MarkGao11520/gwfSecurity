@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
  */
 @Data
 public class ImageCode extends ValidateCode {
+    private static final long serialVersionUID = 3238462150433218914L;
     private BufferedImage image;
 
     public ImageCode(BufferedImage image, String code, int expireIn) {

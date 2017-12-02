@@ -5,7 +5,10 @@ spring:
     username: root
     password: root
   session:
-    store-type: none
+    store-type: redis
+#  redis:
+#    host:
+#    port:
 
 security:
   basic:
@@ -13,7 +16,10 @@ security:
     enabled: false
 
 server:
-  port: 9090
+  port: 9080
+  session:
+    timeout: 600
+
 
 gwf:
   security:
@@ -21,6 +27,7 @@ gwf:
       loginPage: /demo-signIn.html
       loginType: JSON
       signUpUrl: /demo-signUp.html
+      signOutUrl: /demo-logout.html
     social:
       qq:
         app-id: 101447248
@@ -35,7 +42,7 @@ gwf:
       image:
         width: 100  # 宽高可从浏览器获取
         heigth: 100
-        length: 6
+        length: 4
         url: /user,/user/*
         expireIn: 160
       sms:

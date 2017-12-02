@@ -1,5 +1,6 @@
 package com.gwf.security.brower.security;
 
+import com.gwf.security.brower.session.GwfExpiredSessionStrategy;
 import com.gwf.security.core.authentication.AbstractChannelSecurityConfig;
 import com.gwf.security.core.authentication.mobile.SmsCodeAuthenticationSecurityConfig;
 import com.gwf.security.core.properties.SecurityConstants;
@@ -12,8 +13,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.session.InvalidSessionStrategy;
+import org.springframework.security.web.session.SessionInformationExpiredStrategy;
 import org.springframework.social.security.SpringSocialConfigurer;
 
 import javax.sql.DataSource;
@@ -55,7 +59,23 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
     @Autowired
     private SpringSocialConfigurer gwfSocialConfigurer;
 
+    /**
+     * 退出成功处理器
+     */
+    @Autowired
+    private LogoutSuccessHandler logoutSuccessHandler;
 
+    /**
+     * Session并发登录
+     */
+    @Autowired
+    private SessionInformationExpiredStrategy sessionInformationExpiredStrategy;
+
+    /**
+     * Session超时
+     */
+    @Autowired
+    private InvalidSessionStrategy invalidSessionStrategy;
 
     /**
      * 数据库连接池
@@ -99,6 +119,18 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
                     .tokenValiditySeconds(securityProperties.getBrowser().getRememberMeSeconds())
                     .userDetailsService(userDetailsService)
                     .and()
+                .sessionManagement()
+                    .invalidSessionStrategy(invalidSessionStrategy)
+                    .maximumSessions(securityProperties.getBrowser().getSession().getMaximumSessions())
+                    .maxSessionsPreventsLogin(securityProperties.getBrowser().getSession().isMaxSessionsPreventsLogin())
+                    .expiredSessionStrategy(sessionInformationExpiredStrategy)
+                    .and()
+                    .and()
+                .logout()
+                    .logoutUrl("/signOut")
+                    .logoutSuccessHandler(logoutSuccessHandler)
+                    .deleteCookies("JSESSIONID")
+                    .and()
                 .authorizeRequests()    //认证的request authentication
                     .antMatchers(
                             SecurityConstants.DEFAULT_UNAUTHENTICATION_URL,
@@ -106,6 +138,9 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
                             SecurityConstants.DEFAULT_VALIDATE_CODE_URL_PREFIX,
                             securityProperties.getBrowser().getLoginPage(),
                             securityProperties.getBrowser().getSignUpUrl(),
+                            securityProperties.getBrowser().getSignOutUrl(),
+                            securityProperties.getBrowser().getSession().getSessionExpiredUrl(),
+                            securityProperties.getBrowser().getSession().getSessionInvalidUrl(),
                             "/user/regist")
                     .permitAll()
                     .anyRequest()          //所有请求

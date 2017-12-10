@@ -51,7 +51,7 @@ public class MyUserDetailService implements UserDetailsService,SocialUserDetails
                 true,
                 true,
                 true,
-                AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+                AuthorityUtils.commaSeparatedStringToAuthorityList("admin,ROLE_USER"));
         return  user;
     }
 }

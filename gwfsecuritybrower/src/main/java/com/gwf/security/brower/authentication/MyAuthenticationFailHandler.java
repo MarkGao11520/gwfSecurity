@@ -1,9 +1,9 @@
 package com.gwf.security.brower.authentication;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gwf.security.brower.support.SimpleResponse;
 import com.gwf.security.core.properties.LoginType;
 import com.gwf.security.core.properties.SecurityProperties;
+import com.gwf.security.core.support.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
@@ -34,7 +34,7 @@ public class MyAuthenticationFailHandler extends SimpleUrlAuthenticationFailureH
 
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(e.getMessage())));
+            response.getWriter().write(objectMapper.writeValueAsString(ResultGenerator.genFailResult(e.getMessage())));
         }else{
             super.onAuthenticationFailure(request, response, e);
         }

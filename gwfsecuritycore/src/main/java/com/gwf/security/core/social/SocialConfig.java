@@ -28,6 +28,8 @@ public class SocialConfig extends SocialConfigurerAdapter{
     private SecurityProperties securityProperties;
     @Autowired(required = false)
     private ConnectionSignUp connectionSignUp;
+    @Autowired(required = false)
+    private SocialAuthenticationFilterPostProcessor authenticationFilterPostProcessor;
 
 
 
@@ -46,6 +48,7 @@ public class SocialConfig extends SocialConfigurerAdapter{
         String filterProcessesUrl = securityProperties.getSocial().getFilterProcessesUrl();
         GwfSpringSocialConfigurer configurer = new GwfSpringSocialConfigurer();
         configurer.setFilterProcessesUrl(filterProcessesUrl);
+        configurer.setSocialAuthenticationFilterPostProcessor(authenticationFilterPostProcessor);
         configurer.signupUrl(securityProperties.getBrowser().getSignUpUrl());
         return configurer;
     }

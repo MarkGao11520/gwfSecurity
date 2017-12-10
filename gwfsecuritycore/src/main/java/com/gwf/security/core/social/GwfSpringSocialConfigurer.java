@@ -12,10 +12,15 @@ public class GwfSpringSocialConfigurer extends SpringSocialConfigurer{
 
     private String filterProcessesUrl;
 
+    SocialAuthenticationFilterPostProcessor socialAuthenticationFilterPostProcessor;
+
     @Override
     protected <T> T postProcess(T object) {
         SocialAuthenticationFilter filter = (SocialAuthenticationFilter) super.postProcess(object);
         filter.setFilterProcessesUrl(filterProcessesUrl);
+        if(null != socialAuthenticationFilterPostProcessor){
+            socialAuthenticationFilterPostProcessor.process(filter);
+        }
         return (T) filter;
     }
 }

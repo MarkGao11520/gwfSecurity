@@ -51,7 +51,7 @@ gwf:
 logging:
   level: debug
 server:
-  port: 9090
+  port: 8080
 
 
 

@@ -12,7 +12,7 @@ public class ResultGenerator {
                 .setMessage(DEFAULT_SUCCESS_MESSAGE);
     }
 
-    public static Result genSuccessResult(Object data) {
+    public static <T> Result<T> genSuccessResult(T data) {
         return new Result()
                 .setCode(ResultCode.SUCCESS)
                 .setMessage(DEFAULT_SUCCESS_MESSAGE)
@@ -22,6 +22,12 @@ public class ResultGenerator {
     public static Result genFailResult(String message) {
         return new Result()
                 .setCode(ResultCode.FAIL)
+                .setMessage(message);
+    }
+
+    public static Result genFilResult(Integer code, String message){
+        return new Result()
+                .setCode(code)
                 .setMessage(message);
     }
 }

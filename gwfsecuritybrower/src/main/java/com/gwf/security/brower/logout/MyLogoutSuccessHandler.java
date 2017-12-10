@@ -1,12 +1,9 @@
 package com.gwf.security.brower.logout;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gwf.security.brower.support.SimpleResponse;
-import com.gwf.security.core.properties.SecurityProperties;
-import lombok.AllArgsConstructor;
+import com.gwf.security.core.support.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
@@ -34,7 +31,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
 
         if(StringUtils.isBlank(signOutUrl)){
             response.setContentType("application/json;charset=utf-8");
-            response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse("退出成功")));
+            response.getWriter().write(objectMapper.writeValueAsString(ResultGenerator.genSuccessResult("退出成功")));
         }else {
             response.sendRedirect(signOutUrl);
         }

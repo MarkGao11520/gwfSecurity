@@ -8,6 +8,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gwf.security.core.support.ResultGenerator;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,6 @@ import org.springframework.security.web.util.UrlUtils;
 import org.springframework.util.Assert;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gwf.security.brower.support.SimpleResponse;
 
 /**
  * @author zhailiang
@@ -44,7 +44,6 @@ public class AbstractSessionStrategy {
 
 	/**
 	 * @param invalidSessionUrl
-	 * @param invalidSessionHtmlUrl
 	 */
 	public AbstractSessionStrategy(String invalidSessionUrl) {
 		Assert.isTrue(UrlUtils.isValidRedirectUrl(invalidSessionUrl), "url must start with '/' or with 'http(s)'");
@@ -78,7 +77,7 @@ public class AbstractSessionStrategy {
 			}
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.setContentType("application/json;charset=UTF-8");
-			response.getWriter().write(objectMapper.writeValueAsString(new SimpleResponse(message)));
+			response.getWriter().write(objectMapper.writeValueAsString(ResultGenerator.genFailResult(message)));
 		}
 		
 	}

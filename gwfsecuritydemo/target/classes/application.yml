@@ -13,10 +13,14 @@ spring:
 security:
   basic:
   # 打开/关闭spring security 打开默认的用户名为user，密码是程序启动时输出的
-    enabled: false
+    enabled: true
+  oauth2:
+    client:
+      client-id: gwf
+      client-secret: mySecret
 
 server:
-  port: 9080
+  port: 9090
   session:
     timeout: 600
 
@@ -35,8 +39,8 @@ gwf:
         providerId: qq
       filterProcessesUrl : /auth
       weixin:
-        app-id: wx8a1436ae9f981a56
-        app-secret: 97253af8b6c2b10778db893778991619
+        app-id: wxd99431bbff8305a0
+        app-secret: 60f78681d063590a469f1b297feff3c4
         providerId: weixin
     code:
       image:

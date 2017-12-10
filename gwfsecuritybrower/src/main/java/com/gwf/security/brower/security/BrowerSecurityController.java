@@ -1,9 +1,10 @@
 package com.gwf.security.brower.security;
 
-import com.gwf.security.brower.support.SimpleResponse;
 import com.gwf.security.brower.support.SocialUserInfo;
 import com.gwf.security.core.properties.SecurityConstants;
 import com.gwf.security.core.properties.SecurityProperties;
+import com.gwf.security.core.support.Result;
+import com.gwf.security.core.support.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,7 +46,7 @@ public class BrowerSecurityController {
 
     @RequestMapping(SecurityConstants.DEFAULT_UNAUTHENTICATION_URL)
     @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
-    public SimpleResponse requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public Result requireAuthentication(HttpServletRequest request, HttpServletResponse response) throws IOException {
         SavedRequest savedRequest = requestCache.getRequest(request,response);
 
         if(savedRequest!=null){
@@ -55,7 +56,7 @@ public class BrowerSecurityController {
                 redirectStrategy.sendRedirect(request,response,securityProperties.getBrowser().getLoginPage());
             }
         }
-        return new SimpleResponse("访问的服务需要身份认证，请引导用户到登录页");
+        return ResultGenerator.genFailResult("访问的服务需要身份认证，请引导用户到登录页");
     }
 
     @GetMapping("/social/user")

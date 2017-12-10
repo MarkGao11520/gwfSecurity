@@ -9,6 +9,7 @@ import com.gwf.security.core.vaildate.code.ValidateCodeSecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -54,7 +55,7 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
 
     /**
-     * qq登录配置
+     * 设计登录配置
      */
     @Autowired
     private SpringSocialConfigurer gwfSocialConfigurer;
@@ -83,14 +84,7 @@ public class BrowerSecurityConfig extends AbstractChannelSecurityConfig{
     @Autowired
     private DataSource dataSource;
 
-    /**
-     * 密码加密
-     * @return
-     */
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+
 
 
     @Bean

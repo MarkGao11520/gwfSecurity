@@ -3,6 +3,8 @@ package com.gwf.security.brower.authentication;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gwf.security.core.properties.LoginType;
 import com.gwf.security.core.properties.SecurityProperties;
+import com.gwf.security.core.support.ResultCode;
+import com.gwf.security.core.support.ResultGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -33,7 +35,7 @@ public class MyAuthenticationSuccessHandler extends SavedRequestAwareAuthenticat
         log.info("登录成功");
         if(LoginType.JSON.equals(securityProperties.getBrowser().getLoginType())) {
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write(objectMapper.writeValueAsString(authentication));
+            response.getWriter().write(objectMapper.writeValueAsString(ResultGenerator.genSuccessResult(authentication)));
         }else{
             super.onAuthenticationSuccess(request, response, authentication);
         }

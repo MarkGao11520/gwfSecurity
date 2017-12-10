@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.gwf.security.core.support.ResultGenerator;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.Connection;
@@ -44,7 +45,7 @@ public class GwfConnectionStatusView extends AbstractView {
 		}
 		
 		response.setContentType("application/json;charset=UTF-8");
-		response.getWriter().write(objectMapper.writeValueAsString(result));
+		response.getWriter().write(objectMapper.writeValueAsString(ResultGenerator.genSuccessResult(result)));
 	}
 
 }

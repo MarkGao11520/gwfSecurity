@@ -27,6 +27,8 @@ public interface SecurityConstants {
 	 * 默认的手机验证码登录请求处理url
 	 */
 	public static final String DEFAULT_LOGIN_PROCESSING_URL_MOBILE = "/authentication/mobile";
+
+	public static final String DEFAULT_LOGIN_PROCESSING_URL_OPENID= "/authentication/openid";
 	/**
 	 * 默认登录页面
 	 * 
@@ -45,6 +47,12 @@ public interface SecurityConstants {
 	 * 发送短信验证码 或 验证短信验证码时，传递手机号的参数的名称
 	 */
 	public static final String DEFAULT_PARAMETER_NAME_MOBILE = "mobile";
+
+	public static  final String DEFAULT_PARAMETER_NAME_OPENID = "openId";
+
+	public static  final String DEFAULT_PARAMETER_NAME_PROVIDERID = "providerId";
+
+
 
 	/**
 	 * session并发登录的跳转地址

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by gaowenfeng on 2017/11/30.
  */
-@Component
+//@Component
 public class DemoConnectionSignUp implements ConnectionSignUp{
     @Override
     public String execute(Connection<?> connection) {

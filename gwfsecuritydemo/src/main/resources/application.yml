@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/security-demo?useUnicode=yes&characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/security-demo?useUnicode=yes&characterEncoding=utf-8&useSSL=true
     username: root
     password: root
   session:
@@ -42,17 +42,17 @@ gwf:
         app-id: wxd99431bbff8305a0
         app-secret: 60f78681d063590a469f1b297feff3c4
         providerId: weixin
-    code:
-      image:
-        width: 100  # 宽高可从浏览器获取
-        heigth: 100
-        length: 4
-        url: /user,/user/*
-        expireIn: 160
-      sms:
-        length: 6
-        url: /user,/user/*
-        expireIn: 160
+#    code:
+#      image:
+#        width: 100  # 宽高可从浏览器获取
+#        heigth: 100
+#        length: 4
+#        url: /user,/user/*
+#        expireIn: 160
+#      sms:
+#        length: 6
+#        url: /user,/user/*
+#        expireIn: 160
 
 
 

@@ -3,6 +3,7 @@ package com.gwf.web.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.gwf.dto.User;
 import com.gwf.dto.UserQueryCondition;
+import com.gwf.security.app.social.AppSignUpUtils;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
@@ -34,12 +35,16 @@ public class UserController {
     @Autowired
     private ProviderSignInUtils signInUtils;
 
+    @Autowired
+    private AppSignUpUtils appSignUpUtils;
+
     @PostMapping("/regist")
     public void regist(User user, HttpServletRequest request){
         //不管是注册用户还是绑定用户，都会拿到一个用户唯一标示
         String userId = user.getUsername();
 
-        signInUtils.doPostSignUp(userId,new ServletWebRequest(request));
+//        signInUtils.doPostSignUp(userId,new ServletWebRequest(request));
+        appSignUpUtils.doPostSignUp(new ServletWebRequest(request),userId);
     }
 
     @GetMapping("/me")

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.gwf.security.brower.support;
+package com.gwf.security.core.support;
 
 import lombok.Data;
 

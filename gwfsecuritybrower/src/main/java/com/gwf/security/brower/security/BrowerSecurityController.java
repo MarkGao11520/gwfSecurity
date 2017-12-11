@@ -1,6 +1,6 @@
 package com.gwf.security.brower.security;
 
-import com.gwf.security.brower.support.SocialUserInfo;
+import com.gwf.security.core.support.SocialUserInfo;
 import com.gwf.security.core.properties.SecurityConstants;
 import com.gwf.security.core.properties.SecurityProperties;
 import com.gwf.security.core.support.Result;
@@ -59,6 +59,11 @@ public class BrowerSecurityController {
         return ResultGenerator.genFailResult("访问的服务需要身份认证，请引导用户到登录页");
     }
 
+    /**
+     * 社交用户验证成功以后跳转登录页面后获取用户信息的url
+     * @param request
+     * @return
+     */
     @GetMapping("/social/user")
     public SocialUserInfo getSocialUserInfo(HttpServletRequest request){
         SocialUserInfo userInfo = new SocialUserInfo();

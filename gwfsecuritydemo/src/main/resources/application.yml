@@ -52,6 +52,7 @@ gwf:
         clientSecret: mySecret
         accessTokenValidateSeconds: 4200
       storeType: jwt
+      jwtSigningKey: gwf
 #    code:
 #      image:
 #        width: 100  # 宽高可从浏览器获取

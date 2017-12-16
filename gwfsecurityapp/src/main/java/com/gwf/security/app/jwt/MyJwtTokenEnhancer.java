@@ -1,7 +1,6 @@
 package com.gwf.security.app.jwt;
 
 import org.apache.commons.collections.map.HashedMap;
-import org.hibernate.validator.internal.engine.messageinterpolation.parser.TokenIterator;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;

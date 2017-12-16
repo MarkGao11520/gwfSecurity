@@ -14,10 +14,10 @@ security:
   basic:
   # 打开/关闭spring security 打开默认的用户名为user，密码是程序启动时输出的
     enabled: true
-  oauth2:
-    client:
-      client-id: gwf
-      client-secret: mySecret
+#  oauth2:
+#    client:
+#      client-id: gwf
+#      client-secret: mySecret
 
 server:
   port: 9090
@@ -42,6 +42,16 @@ gwf:
         app-id: wxd99431bbff8305a0
         app-secret: 60f78681d063590a469f1b297feff3c4
         providerId: weixin
+    oauth2:
+      clients[0]:
+        clientId: gwf
+        clientSecret: mySecret
+        accessTokenValidateSeconds: 3600
+      clients[1]:
+        clientId: jd
+        clientSecret: mySecret
+        accessTokenValidateSeconds: 4200
+      storeType: jwt
 #    code:
 #      image:
 #        width: 100  # 宽高可从浏览器获取

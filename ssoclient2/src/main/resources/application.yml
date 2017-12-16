@@ -1,0 +1,16 @@
+server:
+  port: 9093
+  context-path: /client2
+security:
+  oauth2:
+    client:
+      client-id: gwf2
+      client-secret: gwfsecrect2
+      # 认证的路径
+      user-authorization-uri: http://127.0.0.1:9091/server/oauth/authorize
+      # 获取token的路径
+      access-token-uri: http://127.0.0.1:9091/server/oauth/token
+    resource:
+      jwt:
+        # 去认证服务器拿秘钥
+        key-uri: http://127.0.0.1:9091/server/oauth/token_key

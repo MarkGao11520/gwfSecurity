@@ -88,7 +88,7 @@ gwf.security.session.sessionInvalidUrl //session失效时跳转的地址
 ```
 
 
-## 浏览器安全认证自定义配置
+## APP安全认证自定义配置
 ```
 gwf.security.clients[i].clientId      //第i个客户端的clientId （oauth2认证授权请求需要）
 gwf.security.clients[i].clientSecret  //第i个客户端的clientSecret（oauth2认证授权请求需要）
